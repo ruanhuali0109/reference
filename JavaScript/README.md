@@ -3,15 +3,6 @@
 Notes: This is not a newbie or master source to learn. Just used it as a
 reference. Thank you. Contribution is welcome.
   
-## What is about?
-It is used only for website animations but nowadays you can used it for
-EVERYTHING. (let's it live in website only. Thank you)
-
-You can run JS program in web browser or directly with NodeJS.
-
-Btw, you should end every statement with semicolon, This guy -> `;`.
-Mention for C programmers. Best practices.
-
 ## Comments
 It only have 2 type of comments.
 ```js
@@ -1218,648 +1209,596 @@ console.log(sumArrayValues(numbers));
   
 ### Function with unlimited number of parameters
   
-
-
-## JavaScript Standard Library
+#### Unlimited number of parameters in regular function
   
-### Arrays
-  
-There are different methods to manipulate an array. These are some of the
-available methods to deal with arrays:Array, length, concat, indexOf, slice,
-splice, join, toString, includes, lastIndexOf, isArray, fill, push, pop, shift,
-unshift
-
-#### Array Constructor
-Array:To create an array.
 ```js
-const arr = Array() // creates an an empty array
-console.log(arr)
-
-const eightEmptyValues = Array(8) // it creates eight empty values
-console.log(eightEmptyValues) // [empty x 8]
-```
-  
-#### Creating static values with fill
-fill: Fill all the array elements with a static value
-```js
-const arr = Array() // creates an an empty array
-console.log(arr)
-
-const eightXvalues = Array(8).fill('X') // it creates eight element values filled with 'X'
-console.log(eightXvalues) // ['X', 'X','X','X','X','X','X','X']
-
-const eight0values = Array(8).fill(0) // it creates eight element values filled with '0'
-console.log(eight0values) // [0, 0, 0, 0, 0, 0, 0, 0]
-
-const four4values = Array(4).fill(4) // it creates 4 element values filled with '4'
-console.log(four4values) // [4, 4, 4, 4]
-```
-  
-#### Concatenating array using concat
-concat:To concatenate two arrays.
-```js
-const firstList = [1, 2, 3]
-const secondList = [4, 5, 6]
-const thirdList = firstList.concat(secondList)
-
-console.log(thirdList) // [1, 2, 3, 4, 5, 6]
-const fruits = ['banana', 'orange', 'mango', 'lemon']                 // array of fruits
-const vegetables = ['Tomato', 'Potato', 'Cabbage', 'Onion', 'Carrot'] // array of vegetables
-const fruitsAndVegetables = fruits.concat(vegetables)                 // concatenate the two arrays
-
-console.log(fruitsAndVegetables)
-["banana", "orange", "mango", "lemon", "Tomato", "Potato", "Cabbage", "Onion", "Carrot"]
-Getting array length
-Length:To know the size of the array
-
-const numbers = [1, 2, 3, 4, 5]
-console.log(numbers.length) // -> 5 is the size of the array
-```
-  
-#### Getting index an element in arr array
-indexOf:To check if an item exist in an array. If it exists it returns the index else it returns -1.
-```js
-const numbers = [1, 2, 3, 4, 5]
-
-console.log(numbers.indexOf(5)) // -> 4
-console.log(numbers.indexOf(0)) // -> -1
-console.log(numbers.indexOf(1)) // -> 0
-console.log(numbers.indexOf(6)) // -> -1
-```
-    
-Check an element if it exist in an array.
-  
-+ Check items in a list
-```js
-// let us check if a banana exist in the array
-const fruits = ['banana', 'orange', 'mango', 'lemon']
-let index = fruits.indexOf('banana')  // 0
-if(index === -1){
-   console.log('This fruit does not exist in the array')  
-} else {
-    console.log('This fruit does exist in the array')
+// function declaration
+function sumAllNums() {
+  let sum = 0
+  for (let i = 0; i < arguments.length; i++) {
+    sum += arguments[i]
+  }
+  return sum
 }
-// This fruit does exist in the array
-// we can use also ternary here
-index === -1 ? console.log('This fruit does not exist in the array'): console.log('This fruit does exist in the array')
-// let us check if an avocado exist in the array
-let indexOfAvocado = fruits.indexOf('avocado')  // -1, if the element not found index is -1
-if(indexOfAvocado === -1){
-    console.log('This fruit does not exist in the array')  
-} else {
-    console.log('This fruit does exist in the array')
+
+console.log(sumAllNums(1, 2, 3, 4)) // 10
+console.log(sumAllNums(10, 20, 13, 40, 10))  // 93
+console.log(sumAllNums(15, 20, 30, 25, 10, 33, 40))  // 173
+```
+  
+#### Unlimited number of parameters in arrow function
+  
+```js
+// function declaration
+const sumAllNums = (...args) => {
+  let sum = 0
+  for (const element of args) {
+    sum += element
+  }
+  return sum
 }
-// This fruit does not exist in the array
-```
-  
-#### Getting last index of an element in array
-lastIndexOf: It gives the position of the last item in the array. If it exist,
-it returns the index else it returns -1.
-```js
-const numbers = [1, 2, 3, 4, 5, 3, 1, 2]
 
-console.log(numbers.lastIndexOf(2)) // 7
-console.log(numbers.lastIndexOf(0)) // -1
-console.log(numbers.lastIndexOf(1)) //  6
-console.log(numbers.lastIndexOf(4)) //  3
-console.log(numbers.lastIndexOf(6)) // -1
+console.log(sumAllNums(1, 2, 3, 4)) // 10
+console.log(sumAllNums(10, 20, 13, 40, 10))  // 93
+console.log(sumAllNums(15, 20, 30, 25, 10, 33, 40))  // 173
 ```
   
-includes:To check if an item exist in an array. If it exist it returns the true
-else it returns false.
+### Anonymous Function
+  
+Anonymous function or without name
 ```js
-const numbers = [1, 2, 3, 4, 5]
+const anonymousFun = function() {
+  console.log(
+    'I am an anonymous function and my value is stored in anonymousFun'
+  )
+}
+```
+  
+### Expression Function
+  
+Expression functions are anonymous functions. After we create a function
+without a name and we assign it to a variable. To return a value from the
+function we should call the variable. Look at the example below.
+```js
+// Function expression
+const square = function(n) {
+  return n * n
+}
 
-console.log(numbers.includes(5)) // true
-console.log(numbers.includes(0)) // false
-console.log(numbers.includes(1)) // true
-console.log(numbers.includes(6)) // false
+console.log(square(2)) // -> 4
+```
+  
+### Self Invoking Functions
+  
+Self invoking functions are anonymous functions which do not need to be called
+to return a value.
+```js
+(function(n) {
+  console.log(n * n)
+})(2) // 4, but instead of just printing if we want to return and store the data, we do as shown below
 
-const webTechs = [
-  'HTML',
-  'CSS',
-  'JavaScript',
-  'React',
-  'Redux',
-  'Node',
-  'MongoDB'
-] // List of web technologies
+let squaredNum = (function(n) {
+  return n * n
+})(10)
 
-console.log(webTechs.includes('Node'))  // true
-console.log(webTechs.includes('C'))     // false
+console.log(squaredNum)
 ```
   
-#### Checking array
-Array.isArray:To check if the data type is an array
+### Arrow Function
+  
+Arrow function is an alternative to write a function, however function
+declaration and arrow function have some minor differences.
+  
+Arrow function uses arrow instead of the keyword function to declare a
+function. Let us see both function declaration and arrow function.
+  
 ```js
-const numbers = [1, 2, 3, 4, 5]
-console.log(Array.isArray(numbers)) // true
+// This is how we write normal or declaration function
+// Let us change this declaration function to an arrow function
+function square(n) {
+  return n * n
+}
 
-const number = 100
-console.log(Array.isArray(number)) // false
-```
-  
-#### Converting array to string
-toString:Converts array to string
-```js
-const numbers = [1, 2, 3, 4, 5]
-console.log(numbers.toString()) // 1,2,3,4,5
+console.log(square(2)) // 4
 
-const names = ['Asabeneh', 'Mathias', 'Elias', 'Brook']
-console.log(names.toString()) // Asabeneh,Mathias,Elias,Brook
-```
-  
-#### Joining array elements
-join: It is used to join the elements of the array, the argument we passed in
-the join method will be joined in the array and return as a string. By default,
-it joins with a comma, but we can pass different string parameter which can be
-joined between the items.
-```js
-const numbers = [1, 2, 3, 4, 5]
-console.log(numbers.join()) // 1,2,3,4,5
+const square = n => {
+  return n * n
+}
 
-const names = ['Asabeneh', 'Mathias', 'Elias', 'Brook']
+console.log(square(2))  // -> 4
 
-console.log(names.join()) // Asabeneh,Mathias,Elias,Brook
-console.log(names.join('')) //AsabenehMathiasEliasBrook
-console.log(names.join(' ')) //Asabeneh Mathias Elias Brook
-console.log(names.join(', ')) //Asabeneh, Mathias, Elias, Brook
-console.log(names.join(' # ')) //Asabeneh # Mathias # Elias # Brook
+// if we have only one line in the code block, it can be written as follows, explicit return
+const square = n => n * n  // -> 4
+```
+  
+```js
+const changeToUpperCase = arr => {
+  const newArr = []
+  for (const element of arr) {
+    newArr.push(element.toUpperCase())
+  }
+  return newArr
+}
 
-const webTechs = [
-  'HTML',
-  'CSS',
-  'JavaScript',
-  'React',
-  'Redux',
-  'Node',
-  'MongoDB'
-] // List of web technologies
+const countries = ['Finland', 'Sweden', 'Norway', 'Denmark', 'Iceland']
+console.log(changeToUpperCase(countries))
 
-console.log(webTechs.join())       // "HTML,CSS,JavaScript,React,Redux,Node,MongoDB"
-console.log(webTechs.join(' # '))  // "HTML # CSS # JavaScript # React # Redux # Node # MongoDB"
+// ["FINLAND", "SWEDEN", "NORWAY", "DENMARK", "ICELAND"]
 ```
   
-#### Slice array elements
-Slice: To cut out a multiple items in range. It takes two parameters:starting
-and ending position. It doesn't include the ending position.
 ```js
-const numbers = [1,2,3,4,5]
+const printFullName = (firstName, lastName) => {
+  return `${firstName} ${lastName}`
+}
+  
+console.log(printFullName('Asabeneh', 'Yetayeh'))
+```
+  
+The above function has only the return statement, therefore, we can explicitly return it as follows.
+  
+```js
+const printFullName = (firstName, lastName) => `${firstName} ${lastName}`
 
-console.log(numbers.slice()) // -> it copies all  item
-console.log(numbers.slice(0)) // -> it copies all  item
-console.log(numbers.slice(0, numbers.length)) // it copies all  item
-console.log(numbers.slice(1,4)) // -> [2,3,4] // it doesn't include the ending position
+console.log(printFullName('Asabeneh', 'Yetayeh'))
 ```
   
-#### Splice method in array
-Splice: It takes three parameters: Starting position, number of times to be
-removed and number of items to be added.
-```js
-const numbers = [1, 2, 3, 4, 5]
-numbers.splice()
-console.log(numbers)                // -> remove all items
-const numbers = [1, 2, 3, 4, 5]
-numbers.splice(0,1)
-console.log(numbers)            // remove the first item
-const numbers = [1, 2, 3, 4, 5, 6]
-numbers.splice(3, 3, 7, 8, 9)
-console.log(numbers.splice(3, 3, 7, 8, 9))  // -> [1, 2, 3, 7, 8, 9] //it removes three item and replace three items
-```
+### Function with default parameters
   
-#### Adding item to an array using push
-Push: adding item in the end. To add item to the end of an existing array we use the push method.
-```js
-// syntax
-const arr  = ['item1', 'item2','item3']
-arr.push('new item')
-console.log(arr)
-// ['item1', 'item2','item3','new item']
-```
-  
-```js
-const numbers = [1, 2, 3, 4, 5]
-numbers.push(6)
-console.log(numbers) // -> [1,2,3,4,5,6]
-
-numbers.pop() // -> remove one item from the end
-console.log(numbers) // -> [1,2,3,4,5]
-```
-  
-```js
-let fruits = ['banana', 'orange', 'mango', 'lemon']
-fruits.push('apple')
-console.log(fruits)    // ['banana', 'orange', 'mango', 'lemon', 'apple']
-
-fruits.push('lime')
-console.log(fruits)   // ['banana', 'orange', 'mango', 'lemon', 'apple', 'lime']
-```
-  
-#### Removing the end element using pop
-pop: Removing item in the end.
-```js
-const numbers = [1, 2, 3, 4, 5]
-numbers.pop() // -> remove one item from the end
-console.log(numbers) // -> [1,2,3,4]
-```
-  
-#### Removing an element from the beginning
-shift: Removing one array element in the beginning of the array.
-```js
-const numbers = [1, 2, 3, 4, 5]
-numbers.shift() // -> remove one item from the beginning
-console.log(numbers) // -> [2,3,4,5]
-```
-  
-#### Add an element from the beginning
-unshift: Adding array element in the beginning of the array.
-```js
-const numbers = [1, 2, 3, 4, 5]
-numbers.unshift(0) // -> add one item from the beginning
-console.log(numbers) // -> [0,1,2,3,4,5]
-```
-  
-#### Reversing array order
-reverse: reverse the order of an array.
-```js
-const numbers = [1, 2, 3, 4, 5]
-numbers.reverse() // -> reverse array order
-console.log(numbers) // [5, 4, 3, 2, 1]
-
-numbers.reverse()
-console.log(numbers) // [1, 2, 3, 4, 5]
-```
-  
-#### Sorting elements in array
-sort: arrange array elements in ascending order. Sort takes a call back function, we will see how we use sort with a call back function in the coming sections.
-```js
-const webTechs = [
-  'HTML',
-  'CSS',
-  'JavaScript',
-  'React',
-  'Redux',
-  'Node',
-  'MongoDB'
-]
-
-webTechs.sort()
-console.log(webTechs) // ["CSS", "HTML", "JavaScript", "MongoDB", "Node", "React", "Redux"]
-
-webTechs.reverse() // after sorting we can reverse it
-console.log(webTechs) // ["Redux", "React", "Node", "MongoDB", "JavaScript", "HTML", "CSS"]
-```
-  
-### Datetime
-  
-#### getFullYear() method
-Let's extract or get the full year from a time object.
-```js
-const now = new Date()
-console.log(now.getFullYear()) // 2020
-```
-  
-#### getMonth() method
-Let's extract or get the month from a time object.
-```js
-const now = new Date()
-console.log(now.getMonth()) // 0, because the month is January,  month(0-11)
-```
-  
-#### getDate() method
-Let's extract or get the date of the month from a time object.
-```js
-const now = new Date()
-console.log(now.getDate()) // 4, because the day of the month is 4th,  day(1-31)
-```
-  
-#### getDay() method
-Let's extract or get the day of the week from a time object.
-```js
-const now = new Date()
-console.log(now.getDay()) // 6, because the day is Saturday which is the 7th day
-//  Sunday is 0, Monday is 1 and Saturday is 6
-// Getting the weekday as a number (0-6)
-```
-  
-#### getHours() method
-Let's extract or get the hours from a time object.
-```js
-const now = new Date()
-console.log(now.getHours()) // 0, because the time is 00:56:41
-```
-  
-#### getMinutes() method
-Let's extract or get the minutes from a time object.
-```js
-const now = new Date()
-console.log(now.getMinutes()) // 56, because the time is 00:56:41
-```
-  
-#### getSeconds() method
-Let's extract or get the seconds from a time object.
-```js
-const now = new Date()
-console.log(now.getSeconds()) // 41, because the time is 00:56:41
-```
-  
-#### getTime() method
-This method give time in milliseconds starting from January 1, 1970.
-It is also know as Unix time. We can get the unix time in two ways:
-
-1. Using getTime()
-```js
-const now = new Date() //
-console.log(now.getTime()) // 1578092201341, this is the number of seconds passed from January 1, 1970 to January 4, 2020 00:56:41
-```
-  
-2. Using Date.now()
-```js
-const allSeconds = Date.now() //
-console.log(allSeconds) // 1578092201341, this is the number of seconds passed from January 1, 1970 to January 4, 2020 00:56:41
-const timeInSeconds = new Date().getTime()
-console.log(allSeconds == timeInSeconds) // true
-```
-  
-Let us format these values to a human readable time format. Example:
-```js
-const now = new Date()
-const year = now.getFullYear() // return year
-const month = now.getMonth() + 1 // return month(0 - 11)
-const date = now.getDate() // return date (1 - 31)
-const hours = now.getHours() // return number (0 - 23)
-const minutes = now.getMinutes() // return number (0 -59)
-
-console.log(`${date}/${month}/${year} ${hours}:${minutes}`) // 4/1/2020 0:56
-```
-  
-### String
-  
-1. toUpperCase(): this method changes the string to uppercase letters.
+Sometimes we pass default values to parameters, when we invoke the function
+if we do not pass an argument the default value will be used. Both function
+declaration and arrow function can have a default value or values.
 
 ```js
-let string = 'JavaScript'
-console.log(string.toUpperCase())     // JAVASCRIPT
-let firstName = 'Asabeneh'
-console.log(firstName.toUpperCase())  // ASABENEH
-let country = 'Finland'
-console.log(country.toUpperCase())    // FINLAND
+function greetings(name = 'Peter') {
+  let message = `${name}, welcome to 30 Days Of JavaScript!`
+  return message
+}
+
+console.log(greetings())
+console.log(greetings('Asabeneh'))
 ```
   
-2. toLowerCase(): this method changes the string to lowercase letters.
 ```js
-let string = 'JavasCript'
-console.log(string.toLowerCase())     // javascript
-let firstName = 'Asabeneh'
-console.log(firstName.toLowerCase())  // asabeneh
-let country = 'Finland'
-console.log(country.toLowerCase())   // finland
+function generateFullName(firstName = 'Asabeneh', lastName = 'Yetayeh') {
+  let space = ' '
+  let fullName = firstName + space + lastName
+  return fullName
+}
+
+console.log(generateFullName())
+console.log(generateFullName('David', 'Smith'))
 ```
   
-3. substr(): It takes two arguments, the starting index and number of
-characters to slice.
 ```js
-let string = 'JavaScript'
-console.log(string.substr(4,6))    // Script
-let country = 'Finland'
-console.log(country.substr(3, 4))   // land
+function calculateAge(birthYear, currentYear = 2019) {
+  let age = currentYear - birthYear
+  return age
+}
+
+console.log('Age: ', calculateAge(1819))
 ```
   
-4. substring(): It takes two arguments, the starting index and the stopping
-index but it doesn't include the character at the stopping index.
 ```js
-let string = 'JavaScript'
-console.log(string.substring(0,4))     // Java
-console.log(string.substring(4,10))    // Script
-console.log(string.substring(4))       // Script
-let country = 'Finland'
-console.log(country.substring(0, 3))   // Fin
-console.log(country.substring(3, 7))   // land
-console.log(country.substring(3))      // land
+function weightOfObject(mass, gravity = 9.81) {
+  let weight = mass * gravity + ' N' // the value has to be changed to string first
+  return weight
+}
+
+console.log('Weight of an object in Newton: ', weightOfObject(100)) // 9.81 gravity at the surface of Earth
+console.log('Weight of an object in Newton: ', weightOfObject(100, 1.62)) // gravity at surface of Moon
 ```
   
-5. split(): The split method splits a string at a specified place.
+Let us see how we write the above functions with arrow functions
 ```js
-let string = '30 Days Of JavaScript'
-console.log(string.split())     // Changes to an array -> ["30 Days Of JavaScript"]
-console.log(string.split(' '))  // Split to an array at space -> ["30", "Days", "Of", "JavaScript"]
-let firstName = 'Asabeneh'
-console.log(firstName.split())    // Change to an array - > ["Asabeneh"]
-console.log(firstName.split(''))  // Split to an array at each letter ->  ["A", "s", "a", "b", "e", "n", "e", "h"]
-let countries = 'Finland, Sweden, Norway, Denmark, and Iceland'
-console.log(countries.split(','))  // split to any array at comma -> ["Finland", " Sweden", " Norway", " Denmark", " and Iceland"]
-console.log(countries.split(', ')) //  ["Finland", "Sweden", "Norway", "Denmark", "and Iceland"]
+const greetings = (name = 'Peter') => {
+  let message = name + ', welcome to 30 Days Of JavaScript!'
+  return message
+}
+
+console.log(greetings())
+console.log(greetings('Asabeneh'))
 ```
   
-6. trim(): Removes trailing space in the beginning or the end of a string.
 ```js
-let string = \'   30 Days Of JavaScript   '
-console.log(string)
-console.log(string.trim(' '))
-let firstName = ' Asabeneh '
-console.log(firstName)
-console.log(firstName.trim())  // still removes spaces at the beginning and the end of the string
+const generateFullName = (firstName = 'Asabeneh', lastName = 'Yetayeh') => {
+  let space = ' '
+  let fullName = firstName + space + lastName
+  return fullName
+}
+
+console.log(generateFullName())
+console.log(generateFullName('David', 'Smith'))
 ```
   
-7. includes(): It takes a substring argument and it checks if substring
-argument exists in the string. includes() returns a boolean. If a substring
-exist in a string, it returns true, otherwise it returns false.
 ```js
-let string = '30 Days Of JavaScript'
-console.log(string.includes('Days'))     // true
-console.log(string.includes('days'))     // false - it is case sensitive!
-console.log(string.includes('Script'))   // true
-console.log(string.includes('script'))   // false
-console.log(string.includes('java'))     // false
-console.log(string.includes('Java'))     // true
-let country = 'Finland'
-console.log(country.includes('fin'))     // false
-console.log(country.includes('Fin'))     // true
-console.log(country.includes('land'))    // true
-console.log(country.includes('Land'))    // false
+const calculateAge = (birthYear, currentYear = 2019) => currentYear - birthYear
+console.log('Age: ', calculateAge(1819))
 ```
   
-8. replace(): takes as a parameter the old substring and a new substring.
 ```js
-let string = '30 Days Of JavaScript'
-console.log(string.replace('JavaScript', 'Python')) // 30 Days Of Python
-let country = 'Finland'
-console.log(country.replace('Fin', 'Noman'))       // Nomanland
-```
+const weightOfObject = (mass, gravity = 9.81) => mass * gravity + ' N'
   
-9. charAt(): Takes index and it returns the value at that index
-```js
-let string = '30 Days Of JavaScript'
-console.log(string.charAt(0))        // 3
-let lastIndex = string.length - 1
-console.log(string.charAt(lastIndex)) // t
-```
-  
-10. charCodeAt(): Takes index and it returns char code (ASCII number) of the
-value at that index
-```js
-let string = '30 Days Of JavaScript'
-console.log(string.charCodeAt(3))        // D ASCII number is 68
-let lastIndex = string.length - 1
-console.log(string.charCodeAt(lastIndex)) // t ASCII is 116
-```
-  
-11. indexOf(): Takes a substring and if the substring exists in a string it
-returns the first position of the substring if does not exist it returns -1
-```js
-let string = '30 Days Of JavaScript'
-console.log(string.indexOf('D'))          // 3
-console.log(string.indexOf('Days'))       // 3
-console.log(string.indexOf('days'))       // -1
-console.log(string.indexOf('a'))          // 4
-console.log(string.indexOf('JavaScript')) // 11
-console.log(string.indexOf('Script'))     //15
-console.log(string.indexOf('script'))     // -1
-```
-  
-12. lastIndexOf(): Takes a substring and if the substring exists in a string
-it returns the last position of the substring if it does not exist it
-returns -1
-```js
-let string = 'I love JavaScript. If you do not love JavaScript what else can you love.'
-console.log(string.lastIndexOf('love'))       // 67
-console.log(string.lastIndexOf('you'))        // 63
-console.log(string.lastIndexOf('JavaScript')) // 38
-```
-  
-13. concat(): it takes many substrings and joins them.
-```js
-let string = '30'
-console.log(string.concat("Days", "Of", "JavaScript")) // 30DaysOfJavaScript
-let country = 'Fin'
-console.log(country.concat("land")) // Finland
+console.log('Weight of an object in Newton: ', weightOfObject(100)) // 9.81 gravity at the surface of Earth
+console.log('Weight of an object in Newton: ', weightOfObject(100, 1.62)) // gravity at surface of Moon
 ```
 
-14. startsWith(): it takes a substring as an argument and it checks if the
-string starts with that specified substring. It returns a
-boolean(true or false).
+#### Different between arrow function and normal function
+
+1️. Syntax
+  
+We can write normal and arrow function in this way 😎
 ```js
-let string = 'Love is the best to in this world'
-console.log(string.startsWith('Love'))   // true
-console.log(string.startsWith('love'))   // false
-console.log(string.startsWith('world'))  // false
-let country = 'Finland'
-console.log(country.startsWith('Fin'))   // true
-console.log(country.startsWith('fin'))   // false
-console.log(country.startsWith('land'))  //  false
+// ES5
+var add = function(x, y) {
+    return x + y
+};// ES6
+let add = (x, y) =>  x + y
+```
+
+Implicit Return
+
+In regular function, you have to use return keyword to return any value. If you
+don’t return anything then the function will return undefined.
+```js
+function regFunc() {
+    return "Regular Function";
+}
+regFunc(); 
+// Regular Functionfunction regFunc() {
+    console.log("Regular Function")
+}regFunc(); 
+// Regular Function
+// undefined
 ```
   
-15. endsWith(): it takes a substring as an argument and it checks if the string
-ends with that specified substring. It returns a boolean(true or false).
+Arrow functions behave in the same way when returning values.
+  
+If the arrow function contains one expression, you can omit the curly braces,
+and then the expression will be implicitly returned.
+  
+{} not required if its only one line of statement
 ```js
-let string = 'Love is the most powerful feeling in the world'
-console.log(string.endsWith('world'))         // true
-console.log(string.endsWith('love'))          // false
-console.log(string.endsWith('in the world')) // true
-let country = 'Finland'
-console.log(country.endsWith('land'))         // true
-console.log(country.endsWith('fin'))          // false
-console.log(country.endsWith('Fin'))          //  false
+const addOne = (number) => number + 1;
+addOne(10);
+```
+() not required if you pass only one argument
+  
+```js
+let add = x => x + x;
 ```
   
-16. search(): it takes a substring as an argument and it returns the index of the
-first match. The search value can be a string or a regular expression pattern.
+If there is no arguments
+  
 ```js
-let string = 'I love JavaScript. If you do not love JavaScript what else can you love.'
-console.log(string.search('love'))          // 2
-console.log(string.search(/javascript/gi))  // 7
+let arrowFunc = _ => console.log("Arrow Function");
+```
+
+2️. Arguments binding
+
+In regular function, Arguments keywords can be used to access the arguments of which passed to function.
+
+```js
+function regularFunction(a,b) {
+    console.log(arguments)
+}regularFunction(1,2)
+// Arguments[1,2]
 ```
   
-17. match: it takes a substring or regular expression pattern as an argument
-and it returns an array if there is match if not it returns null. Let us see
-how a regular expression pattern looks like. It starts with / sign and ends
-with / sign.
+Arrow functions do not have an arguments binding.
 ```js
-let string = 'love'
-let patternOne = /love/     // with out any flag
-let patternTwo = /love/gi   // g-means to search in the whole text, i - case insensitive
+const arrowFunction = (a,b) => {
+    console.log(arguments)
+}arrowFunction(1,2)
+//ReferenceError: arguments is not defined
 ```
   
-Match syntax
+However, if you want to access arguments in an arrow function, you can use the rest operator:
 ```js
-let string = 'I love JavaScript. If you do not love JavaScript what else can you love.'
-console.log(string.match('love'))
+var arrowFunction = (...args) => {
+    console.log(...args)
+}arrowFunction(1,2)
+// 1 2
+```
 
-// ["love", index: 2, input: "I love JavaScript. If you do not love JavaScript what else can you love.", groups: undefined]
+3️. this
 
-let pattern = /love/gi
-console.log(string.match(pattern))   // ["love", "love", "love"]
+In regular function, this changes according to the way that function is invoked.
+
++ Simple Invocation: this equals the global object or maybe undefined if you are using strict mode.
++ Method Invocation: this equals the object that owns the method.
++ Indirect Invocation: this equals the first argument.
++ Constructor Invocation: this equals the newly created instance.
+  
+```js
+// 1️⃣ Simple Invocation
+function simpleInvocation() {
+    console.log(this);
+}simpleInvocation(); 
+// Window Object
+// 2️⃣ Method Invocation
+const methodInvocation = {
+  method() {
+      console.log(this);
+  }
+};methodInvocation.method(); 
+// logs methodInvocation object
+// 3️⃣ Indirect Invocation
+const context = { aVal: 'A', bVal: 'B' };
+function indirectInvocation() {
+    console.log(this);
+}indirectInvocation.call(context);  // logs { aVal: 'A' }
+indirectInvocation.apply(context); // logs { bVal: 'A' }
+// 4️⃣ Constructor Invocation
+function constructorInvocation() {
+    console.log(this);
+}new constructorInvocation(); 
+// logs an instance of constructorInvocation
 ```
   
-Let us extract numbers from text using a regular expression. This is not the regular expression section, do not panic! We will cover regular expressions later on.
+Arrow functions don’t have their own this, and they don’t redefine the value of this within the function.
+  
+this inside an arrow function always refers to this from the outer context.
 ```js
-let txt = 'In 2019, I ran 30 Days of Python. Now, in 2020 I am super exited to start this challenge'
-let regEx = /\d+/
-
-// d with escape character means d not a normal d instead acts a digit
-// + means one or more digit numbers,
-// if there is g after that it means global, search everywhere.
-
-console.log(txt.match(regEx))  // ["2", "0", "1", "9", "3", "0", "2", "0", "2", "0"]
-console.log(txt.match(/\d+/g)) // ["2019", "30", "2020"]
-```
-
-18. repeat(): it takes a number as argument and it returns the repeated version of the string.
-```js
-let string = 'love'
-console.log(string.repeat(10)) // lovelovelovelovelovelovelovelovelovelove
+var name = "Suprabha"
+let newObject = {
+    name : "supi",
+    arrowFunc: () => {
+        console.log(this.name); 
+    },
+    regularFunc() {
+        console.log(this.name); 
+    }   
+}newObject.arrowFunc(); // Suprabha
+newObject.regularFunc(); // supi
 ```
   
-### Math
-Some basic math methods
+4️. new
+  
+Regular functions are constructible, they can be called using the new keyword.
 ```js
-console.log(Math.round(PI))                // 3 to round values to the nearest number
-console.log(Math.round(9.81))              // 10
-console.log(Math.floor(PI))                // 3 rounding down
-console.log(Math.ceil(PI))                 // 4 rounding up
-console.log(Math.min(-5, 3, 20, 4, 5, 10)) // -5, returns the minimum value
-console.log(Math.max(-5, 3, 20, 4, 5, 10)) // 20, returns the maximum value
-
-// Absolute value
-console.log(Math.abs(-10))      // 10
-
-//Square root
-console.log(Math.sqrt(100))     // 10
-
-console.log(Math.sqrt(2))       // 1.4142135623730951
-
-// Power
-console.log(Math.pow(3, 2))     // 9
-
-console.log(Math.E)             // 2.718
-
-// Logarithm
-// Returns the natural logarithm with base E of x, Math.log(x)
-console.log(Math.log(2))        // 0.6931471805599453
-console.log(Math.log(10))       // 2.302585092994046
-
-// Returns the natural logarithm of 2 and 10 respectively
-console.log(Math.LN2)           // 0.6931471805599453
-console.log(Math.LN10)          // 2.302585092994046
-
-// Trigonometry
-Math.sin(0)
-Math.sin(60)
-
-Math.cos(0)
-Math.cos(60)
+function add (x, y) {
+    console.log(x + y)
+}let sum = new add(2,3);
+// 5
 ```
   
-#### Random numbers
+However, arrow functions can never be used as constructor functions. Hence,
+they can never be invoked with the new keyword
 ```js
-const randNum = Math.random() // creates random number between 0 to 0.999999
-console.log(randNum)
-
-const num = Math.floor(Math.random () * 11) // creates random number between 0 and 10
-console.log(num)
+let add = (x, y) => console.log(x + y);const sum = new add(2,4); 
+// TypeError: add is not a constructor
 ```
+  
+5️. No duplicate named parameters
+  
+In normal function, we can do this:
+```js
+// ✅ will work 
+function add(a, a) {}// ❌ will not work 
+'use strict';
+function add(a, a) {}// Uncaught SyntaxError: Duplicate parameter name not allowed in this context
+```
+  
+Arrow functions can never have duplicate named parameters, whether in strict or non-strict mode.
+```js
+const arrowFunc = (a,a) => {}// Uncaught SyntaxError: Duplicate parameter name not allowed in this context
+```
+  
+6️. Function Hoisting
+  
+In regular function, function gets hoisting at top.
+  
+```js
+normalFunc()function normalFunc() {
+    return "Normal Function"
+}// "Normal Function"
+```
+  
+In arrow function, function get hoisted where you define. So, if you call the
+function before initialisation you will get referenceError.
+```js
+arrowFunc()const arrowFunc = () => {
+    return "Arrow Function"
+}// ReferenceError: Cannot access 'arrowFunc' before initialization
+```
+  
+7️. Methods
+  
+You can define methods in class using regular function.
+```js
+class FullName {
+    constructor(name) {
+        this.name = name;
+    }    result() {
+        console.log(this.name)
+    }
+}let name = new FullName("Suprabha")console.log(name) 
+// FullName {name: "Suprabha"}
+```
+  
+You need to apply method as callback also.
+```js
+setTimeout(name.result, 2000) 
+// after 1 second logs ""
+```
+  
+But if you bind this
+```js
+setTimeout(name.result.bind(name), 2000) 
+// Suprabha
+```
+  
+By above example, you can see that you have to bind the this to there context.
+  
+In arrow function, you don’t have to bind with context.
+```js
+class FullName {
+    constructor(name) {
+        this.name = name;
+    }    result = () => {
+        console.log(this.name)
+    }
+}
+let name = new FullName("Suprabha")
+setTimeout(name.result, 2000) // Suprabha
+```  
 
+When not to use Arrow function 👩🏻‍💻
+  
+Object Methods
+```js
+let dog = {
+    count: 3,
+    jumps: () => {
+        this.count++
+    }
+}
+```
+  
+When you call dog.jumps, the number of count does not increase. It is because
+this is not bound to anything, and will inherit the value of this from its
+parent scope.
+  
+## Scopes
+  
+When declare variables, variables scopes can be:
++ Global
++ Local
+  
+### Window Global Object
+  
+Without using console.log() open your browser and check, you will see the value
+of a and b if you write a or b on the browser. That means a and b are already
+available in the window.
+```js
+//scope.js
+a = 'JavaScript' // declaring a variable without let or const make it available in window object and this found anywhere
+b = 10 // this is a global scope variable and found in the window object
+function letsLearnScope() {
+  console.log(a, b)
+  if (true) {
+    console.log(a, b)
+  }
+}
+console.log(a, b) // accessible
+```
+  
+### Global scope
+  
+A globally declared variable can be accessed every where in the same file.
+But the term global is relative. It can be global to the file or it can be
+global relative to some block of codes.
+```js
+//scope.js
+let a = 'JavaScript' // is a global scope it will be found anywhere in this file
+let b = 10 // is a global scope it will be found anywhere in this file
+function letsLearnScope() {
+  console.log(a, b) // JavaScript 10, accessible
+  if (true) {
+    let a = 'Python'
+    let b = 100
+    console.log(a, b) // Python 100
+  }
+  console.log(a, b)
+}
+letsLearnScope()
+console.log(a, b) // JavaScript 10, accessible
+```
+  
+### Local scope
+  
+A variable declared as local can be accessed only in certain block code.
+  
++ Block scope
++ Function scope
+  
+```js
+//scope.js
+let a = 'JavaScript' // is a global scope it will be found anywhere in this file
+let b = 10 // is a global scope it will be found anywhere in this file
+// Function scope
+function letsLearnScope() {
+  console.log(a, b) // JavaScript 10, accessible
+  let value = false
+// block scope
+  if (true) {
+    // we can access from the function and outside the function but 
+    // variables declared inside the if will not be accessed outside the if block
+    let a = 'Python'
+    let b = 20
+    let c = 30
+    let d = 40
+    value = !value
+    console.log(a, b, c, value) // Python 20 30 true
+  }
+  // we can not access c because c's scope is only the if block
+  console.log(a, b, value) // JavaScript 10 true
+}
+letsLearnScope()
+console.log(a, b) // JavaScript 10, accessible
+```
+  
+Now, you have an understanding of scope. A variable declared with var only
+scoped to function but variable declared with let or const is block scope
+(function block, if block, loop block, etc). Block in JavaScript is a code
+in between two curly brackets ({}).
+  
+```js
+//scope.js
+function letsLearnScope() {
+  var gravity = 9.81
+  console.log(gravity)
 
+}
+// console.log(gravity), Uncaught ReferenceError: gravity is not defined
+
+if (true){
+  var gravity = 9.81
+  console.log(gravity) // 9.81
+}
+console.log(gravity)  // 9.81
+
+for(var i = 0; i < 3; i++){
+  console.log(i) // 0, 1, 2
+}
+console.log(i) // 3
+```
+  
+In ES6 and above there is let and const, so you will not suffer from the
+sneakiness of var. When we use let our variable is block scoped and it will
+not infect other parts of our code.
+  
+```js
+//scope.js
+function letsLearnScope() {
+  // you can use let or const, but gravity is constant I prefer to use const
+  const gravity = 9.81
+  console.log(gravity)
+
+}
+// console.log(gravity), Uncaught ReferenceError: gravity is not defined
+
+if (true){
+  const  gravity = 9.81
+  console.log(gravity) // 9.81
+}
+// console.log(gravity), Uncaught ReferenceError: gravity is not defined
+
+for(let i = 0; i < 3; i++){
+  console.log(i) // 0, 1, 2
+}
+// console.log(i), Uncaught ReferenceError: i is not defined
+```
+  
+The scope let and const are the same. The difference is only reassigning.
+We can not change or reassign the value of the const variable. I would
+strongly suggest you to use let and const, by using let and const you will
+write clean code and avoid hard to debug mistakes. As a rule of thumb, you
+can use let for any value which change, const for any constant value, and
+for an array, object, arrow function and function expression.
+  
+## Object
+  
 ## Sources
 For newbie:
 [30 Days of JavaScript](https://github.com/Asabeneh/30-Days-Of-JavaScript/)
